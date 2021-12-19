@@ -65,7 +65,7 @@ class TFRecordExporter:
         if self.shape is None:
             self.shape = img.shape
             self.resolution_log2 = int(np.log2(self.shape[1]))
-            assert self.shape[0] in [1, 3, 5]
+            assert self.shape[0] in [1, 3, 5, 7]
             assert self.shape[1] == self.shape[2]
             assert self.shape[1] == 2**self.resolution_log2
             tfr_opt = tf.python_io.TFRecordOptions(tf.python_io.TFRecordCompressionType.NONE)
@@ -626,7 +626,7 @@ def create_from_images(tfrecord_dir, image_dir, shuffle):
 
 
 
-def create_from_brats(tfrecord_dir, image_dir, shuffle):
+def create_from_brats_5channels(tfrecord_dir, image_dir, shuffle):
     print('Loading images from "%s"' % image_dir)
 
     image_filenames_T1CE = sorted(glob.glob(os.path.join(image_dir + '/T1CE/', '*')))
@@ -667,6 +667,63 @@ def create_from_brats(tfrecord_dir, image_dir, shuffle):
             all_channels_img = np.concatenate((all_channels_img,img),axis=0)
 
             img = np.asarray(PIL.Image.open(image_filenames_annotation[order[idx]]))
+            img = img[np.newaxis, :, :] # HW => CHW
+            all_channels_img = np.concatenate((all_channels_img,img),axis=0)
+
+            tfr.add_image(all_channels_img)
+
+
+def create_from_brats_7channels(tfrecord_dir, image_dir, shuffle):
+    print('Loading images from "%s"' % image_dir)
+
+    image_filenames_T1CE = sorted(glob.glob(os.path.join(image_dir + '/T1CE/', '*')))
+    image_filenames_T1 = sorted(glob.glob(os.path.join(image_dir + '/T1/', '*')))
+    image_filenames_T2FLAIR = sorted(glob.glob(os.path.join(image_dir + '/FLAIR/', '*')))
+    image_filenames_T2 = sorted(glob.glob(os.path.join(image_dir + '/T2/', '*')))
+    image_filenames_annotation1 = sorted(glob.glob(os.path.join(image_dir + '/Seg1/', '*')))
+    image_filenames_annotation2 = sorted(glob.glob(os.path.join(image_dir + '/Seg2/', '*')))
+    image_filenames_annotation3 = sorted(glob.glob(os.path.join(image_dir + '/Seg3/', '*')))
+
+    if len(image_filenames_T1CE) == 0:
+        error('No input images found')
+       
+    img = np.asarray(PIL.Image.open(image_filenames_T1CE[0]))
+    resolution = img.shape[0]
+   
+    if img.shape[1] != resolution:
+        error('Input images must have the same width and height')
+    if resolution != 2 ** int(np.floor(np.log2(resolution))):
+        error('Input image resolution must be a power-of-two')
+   
+    with TFRecordExporter(tfrecord_dir, len(image_filenames_T1CE)) as tfr:
+        order = tfr.choose_shuffled_order() if shuffle else np.arange(len(image_filenames_T1CE))
+        for idx in range(order.size):
+
+            img = np.asarray(PIL.Image.open(image_filenames_T1CE[order[idx]]))
+            img = img[np.newaxis, :, :] # HW => CHW
+            all_channels_img = img
+
+            img = np.asarray(PIL.Image.open(image_filenames_T1[order[idx]]))
+            img = img[np.newaxis, :, :] # HW => CHW
+            all_channels_img = np.concatenate((all_channels_img,img),axis=0)
+
+            img = np.asarray(PIL.Image.open(image_filenames_T2FLAIR[order[idx]]))
+            img = img[np.newaxis, :, :] # HW => CHW
+            all_channels_img = np.concatenate((all_channels_img,img),axis=0)
+
+            img = np.asarray(PIL.Image.open(image_filenames_T2[order[idx]]))
+            img = img[np.newaxis, :, :] # HW => CHW
+            all_channels_img = np.concatenate((all_channels_img,img),axis=0)
+
+            img = np.asarray(PIL.Image.open(image_filenames_annotation1[order[idx]]))
+            img = img[np.newaxis, :, :] # HW => CHW
+            all_channels_img = np.concatenate((all_channels_img,img),axis=0)
+
+            img = np.asarray(PIL.Image.open(image_filenames_annotation2[order[idx]]))
+            img = img[np.newaxis, :, :] # HW => CHW
+            all_channels_img = np.concatenate((all_channels_img,img),axis=0)
+
+            img = np.asarray(PIL.Image.open(image_filenames_annotation3[order[idx]]))
             img = img[np.newaxis, :, :] # HW => CHW
             all_channels_img = np.concatenate((all_channels_img,img),axis=0)
 
@@ -779,11 +836,19 @@ def execute_cmdline(argv):
     p.add_argument(     'hdf5_filename',    help='HDF5 archive containing the images')
     p.add_argument(     '--shuffle',        help='Randomize image order (default: 1)', type=int, default=1)
 
-    p = add_command(    'create_from_brats', 'Create dataset from a directory full of images.',
-                                            'create_from_five_images datasets/mydataset myimagedir')
+    p = add_command(    'create_from_brats_5channels', 'Create dataset from a directory full of images.',
+                                            'create_from_brats_5channels datasets/mydataset myimagedir')
     p.add_argument(     'tfrecord_dir',     help='New dataset directory to be created')
     p.add_argument(     'image_dir',        help='Directory containing the images')
     p.add_argument(     '--shuffle',        help='Randomize image order (default: 1)', type=int, default=1)
+
+
+    p = add_command(    'create_from_brats_7channels', 'Create dataset from a directory full of images.',
+                                            'create_from_brats_7channels datasets/mydataset myimagedir')
+    p.add_argument(     'tfrecord_dir',     help='New dataset directory to be created')
+    p.add_argument(     'image_dir',        help='Directory containing the images')
+    p.add_argument(     '--shuffle',        help='Randomize image order (default: 1)', type=int, default=1)
+
 
     args = parser.parse_args(argv[1:] if len(argv) > 1 else ['-h'])
     func = globals()[args.command]
