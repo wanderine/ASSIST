@@ -4,6 +4,8 @@ Based on using the progressive growing GAN by Nvidida, https://github.com/tkarra
 
 First run split_volumes_to_slices.m to generate PNG files from the nifti files in the BraTS dataset.
 
+Create an anaconda environment with the provided yml file. Activate this environment.
+
 Then run make_dataset.sh to make TFrecord datasets from the PNG files (5 or 7 channels).
 
 Modify config.py in the PGGAN code to use your new dataset.
@@ -12,4 +14,4 @@ Change train.py to use 5 or 7 channel images (5 as default).
 
 Run train.py, wait a couple of days...
 
-Warning: This code does not work with too new graphics cards, like RTX 3090 from the Ampere architecture.
+Warning: This code does not work with too new graphics cards, like RTX 3090 from the Ampere architecture, as the code is using TF 1.14.
