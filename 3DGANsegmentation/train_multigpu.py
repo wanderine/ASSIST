@@ -1,29 +1,35 @@
 import nobrainer
 import tensorflow as tf
-
+import os
 from pathlib import Path
+
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"]="0,1,2,3,4,5,6,7"
 
 # RESOLUTION SPECIFICATION
 #resolution_batch_size_map = {4: 64, 8: 64, 16: 32, 32: 32, 64: 16, 128: 2, 256: 1} # per gpu (from proggan)
-resolution_batch_size_map = {8: 64, 16: 32, 32: 32, 64: 16, 128: 2, 256: 1}
+resolution_batch_size_map = {8: 32, 16: 16, 32: 8, 64: 4, 128: 1, 256: 1}
 #resolution_batch_size_map = {8: 32, 16: 16, 32: 8, 64: 4, 128: 1, 256: 1} # per gpu (from nobrainer)
 resolutions = sorted(list(resolution_batch_size_map.keys()))
 
 # SET THE HYPERPARAMETERS
-latent_size = 1024
-g_fmap_base = 4096
-d_fmap_base = 4096
-num_parallel_calls = 4
-kiterations = int(300) # new default
+latent_size = 256
+g_fmap_base = 2048
+d_fmap_base = 2048
+num_parallel_calls = 8
+kiterations = int(400) # new default
 #kiters_per_resolution = kiterations
 #kiters_per_transition = kiterations
-kiters_per_resolution = {4: 80, 8: 100, 16: 120, 32: 140, 64: 160, 128: 180, 256: 200} # per reso defaults (from proggan)
-kiters_per_transition = {4: 80, 8: 100, 16: 120, 32: 140, 64: 160, 128: 180, 256: 200}
+#kiters_per_resolution = {4: 80, 8: 100, 16: 120, 32: 140, 64: 160, 128: 180, 256: 200} # per reso defaults (from proggan)
+#kiters_per_transition = {4: 80, 8: 100, 16: 120, 32: 140, 64: 160, 128: 180, 256: 200}
+kiters_per_resolution = {4: 400, 8: 400, 16: 400, 32: 400, 64: 400, 128: 400, 256: 400} # per reso defaults (from proggan)   
+kiters_per_transition = {4: 400, 8: 400, 16: 400, 32: 400, 64: 400, 128: 400, 256: 400}
+
 
 lr = 1e-4
 
 # CREATE LOGGING DIRECTORIES
-save_dir = '/work/output'
+save_dir = '/scratch/local/nobrainer/results/'
 
 save_dir = Path(save_dir)
 generated_dir = save_dir.joinpath('generated')
@@ -35,7 +41,7 @@ generated_dir.mkdir(exist_ok=True)
 model_dir.mkdir(exist_ok=True)
 
 # INSTANTIATE NEURAL NETWORK
-strategy = tf.distribute.MirroredStrategy(['/gpu:0', '/gpu:1', '/gpu:2'])
+strategy = tf.distribute.MirroredStrategy(['/gpu:0', '/gpu:1', '/gpu:2', '/gpu:3', '/gpu:4','/gpu:5','/gpu:6', '/gpu:7'],cross_device_ops=tf.distribute.HierarchicalCopyAllReduce())
 
 with strategy.scope():
     generator, discriminator = nobrainer.models.progressivegan(latent_size,
@@ -47,7 +53,7 @@ for resolution in resolutions:
     
     # create a train dataset with features for resolution
     dataset_train = nobrainer.dataset.get_dataset(
-        file_pattern="/work/data/*res-%03d*.tfrec"%(resolution),
+        file_pattern="/scratch/local/nobrainer/datasets/HCPT1_1113subjects_rotationaugmentation_256cubes/*res-%03d*.tfrec"%(resolution),
         batch_size=resolution_batch_size_map[resolution],
         num_parallel_calls=num_parallel_calls,
         volume_shape=(resolution, resolution, resolution),
