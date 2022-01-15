@@ -6,10 +6,16 @@ from pathlib import Path
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"]="0,1,2,3,4,5,6,7"
 
+nGPUs = 8
+
 # RESOLUTION SPECIFICATION
-#resolution_batch_size_map = {4: 64, 8: 64, 16: 32, 32: 32, 64: 16, 128: 2, 256: 1} # per gpu (from proggan)
+#resolution_batch_size_map = {4: 64, 8: 64, 16: 32, 32: 32, 64: 16, 128: 2, 256: 1} 
 resolution_batch_size_map = {8: 32, 16: 16, 32: 8, 64: 4, 128: 1, 256: 1}
-#resolution_batch_size_map = {8: 32, 16: 16, 32: 8, 64: 4, 128: 1, 256: 1} # per gpu (from nobrainer)
+for key in resolution_batch_size_map:
+    resolution_batch_size_map[key] = resolution_batch_size_map[key] * nGPUs
+print(resolution_batch_size_map)
+#resolution_batch_size_map =  {8: 64, 16: 32, 32: 16, 64: 8, 128: 1, 256: 1}
+#resolution_batch_size_map = {8: 32, 16: 16, 32: 8, 64: 4, 128: 1, 256: 1} 
 resolutions = sorted(list(resolution_batch_size_map.keys()))
 
 # SET THE HYPERPARAMETERS
@@ -24,7 +30,6 @@ kiterations = int(400) # new default
 #kiters_per_transition = {4: 80, 8: 100, 16: 120, 32: 140, 64: 160, 128: 180, 256: 200}
 kiters_per_resolution = {4: 400, 8: 400, 16: 400, 32: 400, 64: 400, 128: 400, 256: 400} # per reso defaults (from proggan)   
 kiters_per_transition = {4: 400, 8: 400, 16: 400, 32: 400, 64: 400, 128: 400, 256: 400}
-
 
 lr = 1e-4
 
@@ -41,7 +46,9 @@ generated_dir.mkdir(exist_ok=True)
 model_dir.mkdir(exist_ok=True)
 
 # INSTANTIATE NEURAL NETWORK
-strategy = tf.distribute.MirroredStrategy(['/gpu:0', '/gpu:1', '/gpu:2', '/gpu:3', '/gpu:4','/gpu:5','/gpu:6', '/gpu:7'],cross_device_ops=tf.distribute.HierarchicalCopyAllReduce())
+#strategy = tf.distribute.MirroredStrategy(['/gpu:0', '/gpu:1', '/gpu:2', '/gpu:3', '/gpu:4','/gpu:5','/gpu:6', '/gpu:7'],cross_device_ops=tf.distribute.HierarchicalCopyAllReduce())
+#strategy = tf.distribute.MirroredStrategy(['/gpu:0', '/gpu:1', '/gpu:2', '/gpu:3'])                 
+strategy = tf.distribute.MirroredStrategy(['/gpu:0', '/gpu:1', '/gpu:2', '/gpu:3', '/gpu:4','/gpu:5','/gpu:6', '/gpu:7'])
 
 with strategy.scope():
     generator, discriminator = nobrainer.models.progressivegan(latent_size,
