@@ -1,6 +1,8 @@
 import nobrainer
 import tensorflow as tf
 import os
+import nibabel as nib
+import numpy as np
 from pathlib import Path
 
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
@@ -10,16 +12,16 @@ nGPUs = 8
 
 # RESOLUTION SPECIFICATION
 #resolution_batch_size_map = {4: 64, 8: 64, 16: 32, 32: 32, 64: 16, 128: 2, 256: 1} 
-resolution_batch_size_map = {8: 32, 16: 16, 32: 8, 64: 4, 128: 1, 256: 1}
+#resolution_batch_size_map = {8: 32, 16: 16, 32: 8, 64: 4, 128: 1, 256: 1}
+resolution_batch_size_map = {8: 64, 16: 32, 32: 16, 64: 8, 128: 2, 256: 1}
 for key in resolution_batch_size_map:
     resolution_batch_size_map[key] = resolution_batch_size_map[key] * nGPUs
 print(resolution_batch_size_map)
-#resolution_batch_size_map =  {8: 64, 16: 32, 32: 16, 64: 8, 128: 1, 256: 1}
-#resolution_batch_size_map = {8: 32, 16: 16, 32: 8, 64: 4, 128: 1, 256: 1} 
+
 resolutions = sorted(list(resolution_batch_size_map.keys()))
 
 # SET THE HYPERPARAMETERS
-latent_size = 256
+latent_size = 128
 g_fmap_base = 2048
 d_fmap_base = 2048
 num_parallel_calls = 8
@@ -110,7 +112,22 @@ for resolution in resolutions:
         resolution=resolution,
         steps_per_epoch=steps_per_epoch,
         callbacks=[model_checkpoint_callback])
-
-    # save the final weights
+    
+    # save the final weights for this resolution
     generator.save(str(model_dir.joinpath('generator_res_{}'.format(resolution))))
 
+    # Generate some synthetic brains for this resolution
+    for synthetic in range(20):
+        # Generate noise vector
+        latents = tf.random.normal((1, latent_size))
+        # Load generator
+        temp_generator = tf.saved_model.load(str(model_dir.joinpath('generator_res_{}'.format(resolution))))
+        generate = temp_generator.signatures["serving_default"]
+        img = generate(latents)["generated"]
+        img = np.squeeze(img)
+        # Convert to nifti image
+        img = nib.Nifti1Image(img.astype(np.uint8), np.eye(4))
+        # Save nifti file 
+        nib.save(img, str(generated_dir.joinpath('synthetic_res_{}_example_{}.nii.gz'.format(resolution,synthetic+1))))
+
+        
