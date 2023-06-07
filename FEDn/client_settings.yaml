@@ -1,0 +1,4 @@
+
+batch_size: 1
+dataset: 'TCGA_DU'
+validation_dataset: 'noname_3'
