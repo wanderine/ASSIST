@@ -165,15 +165,13 @@ def create_dataset_json_separatevalidationsite(root_dir, output_file, training_s
 # Example usage
 root_directory = "/proj/assist/users/x_anekl/ifusion_brats/data/BRATS_2020/MICCAI_BraTS2020_TrainingData/"
 
-site = "CBICA"
-output_json_file = site + ".json"
-
-create_dataset_json_onesite(root_directory, output_json_file, site, validation_percent=0.2)
-
+#site = "CBICA"
+#output_json_file = site + ".json"
+#create_dataset_json_onesite(root_directory, output_json_file, site, validation_percent=0.2)
 
 training_site = "noname_3"
 validation_site = "TCGA_DU"
-output_json_file = "myclient.json"
+output_json_file = root_directory + "berzelius_1.json"
 create_dataset_json_separatevalidationsite(root_directory, output_json_file, training_site, validation_site)
 
 
