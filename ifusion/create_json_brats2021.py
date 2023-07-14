@@ -18,68 +18,134 @@ def get_data_list(dataset_folder):
     # site 1
     bratsClients['noname_1'] = data_into_list
 
-    # site 2
-    bratsClients['noname_2'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and 1411 <= int(record.split("0")[2]) <= 1416)]
-    # site 3
-    bratsClients['noname_3'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and 1426 <= int(record.split("0")[2]) <= 1440)]
-    # site 4
-    bratsClients['noname_4'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 561 or int(record.split("00")[2]) == 563 or int(record.split("00")[2]) == 565 or int(record.split("0")[2]) == 1151 or int(record.split("0")[2]) == 1152 or 1167 <= int(record.split("0")[2]) <= 1201 or int(record.split("0")[2]) == 1537  or 1657 <= int(record.split("0")[2]) <= 1662 )) ]
+    my_file = open("brats_2021_site2_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
+    # site 2
+    bratsClients['noname_2'] = data_into_list
+
+    my_file = open("brats_2021_site3_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
+    
+    # site 3
+    bratsClients['noname_3'] = data_into_list
+        
+    my_file = open("brats_2021_site4_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
+
+    # site 4
+    bratsClients['noname_4'] = data_into_list
+
+    my_file = open("brats_2021_site5_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
+    
     # site 5
-    bratsClients['TCGA_GBM_1'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 100 or int(record.split("00")[2]) == 102 or int(record.split("00")[2]) == 109 or int(record.split("00")[2]) == 113 or int(record.split("00")[2]) == 123 or int(record.split("00")[2]) == 139 or int(record.split("00")[2]) == 149 or int(record.split("00")[2]) == 151 or int(record.split("00")[2]) == 999 or int(record.split("0")[2]) == 1002 or int(record.split("0")[2]) == 1003 or int(record.split("0")[2]) == 1005 or int(record.split("0")[2]) == 1007 or int(record.split("0")[2]) == 1009  or 1281 <= int(record.split("0")[2]) <= 1284 or 1289 <= int(record.split("0")[2]) <= 1282 ))]   
+    bratsClients['TCGA_GBM_1'] = data_into_list
+
+    my_file = open("brats_2021_site6_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 6
-    bratsClients['TCGA_GBM_2'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 105 or int(record.split("00")[2]) == 120 or int(record.split("00")[2]) == 121 or int(record.split("00")[2]) == 132 or int(record.split("00")[2]) == 133 or int(record.split("00")[2]) == 136 or int(record.split("00")[2]) == 137 or int(record.split("00")[2]) == 142  or int(record.split("00")[2]) == 143 or int(record.split("00")[2]) == 144 or int(record.split("00")[2]) == 146 or int(record.split("00")[2]) == 147 or int(record.split("00")[2]) == 831   or 1296 <= int(record.split("0")[2]) <= 1298 or int(record.split("0")[2]) == 1300 or int(record.split("0")[2]) == 1302  or int(record.split("0")[2]) == 1303  or 1441 <= int(record.split("0")[2]) <= 1455 ))]   
+    bratsClients['TCGA_GBM_2'] = data_into_list
+
+    my_file = open("brats_2021_site7_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 7
-    bratsClients['TCGA_GBM_3'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and 1456 <= int(record.split("0")[2]) <= 1467)]   
+    bratsClients['TCGA_GBM_3'] = data_into_list
+
+    my_file = open("brats_2021_site8_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 8
-    bratsClients['TCGA_GBM_4'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 104 or int(record.split("00")[2]) == 110 or int(record.split("00")[2]) == 112 or int(record.split("00")[2]) == 128 or int(record.split("00")[2]) == 140 or 1468 <= int(record.split("0")[2]) <= 1470 ))]   
+    bratsClients['TCGA_GBM_4'] = data_into_list
+
+    my_file = open("brats_2021_site9_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 9
-    bratsClients['TCGA_GBM_5'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 116 or int(record.split("00")[2]) == 134 or int(record.split("00")[2]) == 150 or int(record.split("0")[2]) == 1471  ))]   
+    bratsClients['TCGA_GBM_5'] = data_into_list
+
+    my_file = open("brats_2021_site10_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 10
-    bratsClients['TCGA_GBM_6'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 106 or int(record.split("00")[2]) == 111 or int(record.split("00")[2]) == 117 or int(record.split("00")[2]) == 124 or int(record.split("00")[2]) == 130 or int(record.split("00")[2]) == 138 or int(record.split("0")[2]) == 1472 or int(record.split("0")[2]) == 1473  ))]   
-  
+    bratsClients['TCGA_GBM_6'] = data_into_list
+
+    my_file = open("brats_2021_site11_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
+
     # site 11
-    bratsClients['TCGA_GBM_7'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 107 or int(record.split("00")[2]) == 108 or int(record.split("00")[2]) == 122 or int(record.split("00")[2]) == 148 or 1139 <= int(record.split("0")[2]) <= 1146 or int(record.split("0")[2]) == 1474 or int(record.split("0")[2]) == 1475  ))]   
+    bratsClients['TCGA_GBM_7'] = data_into_list
+
+    my_file = open("brats_2021_site12_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 12
-    bratsClients['TCGA_LGG_1'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and 1476 <= int(record.split("0")[2]) <= 1486)]   
+    bratsClients['TCGA_LGG_1'] = data_into_list
+
+    my_file = open("brats_2021_site13_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 13
-    bratsClients['TCGA_LGG_2'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and 1487 <= int(record.split("0")[2]) <= 1521)]   
+    bratsClients['TCGA_LGG_2'] = data_into_list
+
+    my_file = open("brats_2021_site14_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 14
-    bratsClients['TCGA_LGG_3'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and 1522 <= int(record.split("0")[2]) <= 1527)]   
+    bratsClients['TCGA_LGG_3'] = data_into_list
+
+    my_file = open("brats_2021_site15_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 15
-    bratsClients['TCGA_LGG_4'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and (1528 <= int(record.split("0")[2]) <= 1536 or  1663 <= int(record.split("0")[2]) <= 1666 ))]   
+    bratsClients['TCGA_LGG_4'] = data_into_list
+
+    my_file = open("brats_2021_site16_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 16
-    bratsClients['IvyGAP'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 115 or 567 <= int(record.split("00")[2]) <= 572 or 574 <= int(record.split("00")[2]) <= 584 or 586 <= int(record.split("00")[2]) <= 591 or 593 <= int(record.split("00")[2]) <= 594 or 596 <= int(record.split("00")[2]) <= 599 ))]   
+    bratsClients['IvyGAP'] = data_into_list
+
+    my_file = open("brats_2021_site17_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 17
-    bratsClients['noname_5'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and 1417 <= int(record.split("0")[2]) <= 1425)]   
-
+    bratsClients['noname_5'] = data_into_list
+    
     my_file = open("brats_2021_site18_subjects.txt", "r")
     data = my_file.read()
     data_into_list = data.split("\n")    
@@ -87,26 +153,46 @@ def get_data_list(dataset_folder):
 
     # site 18
     bratsClients['noname_6'] = data_into_list
-    
+
+    my_file = open("brats_2021_site19_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
+
     # site 19
-    bratsClients['ACRIN'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and 1163 <= int(record.split("0")[2]) <= 1166)]   
-    
+    bratsClients['ACRIN'] = data_into_list
+
+    my_file = open("brats_2021_site20_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
+
     # site 20
-    bratsClients['CPTAC'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 101 or int(record.split("00")[2]) == 127  or 442 <= int(record.split("00")[2]) <= 446  or 448 <= int(record.split("00")[2]) <= 449 or 451 <= int(record.split("00")[2]) <= 457 or  int(record.split("00")[2]) == 459  or 1011 <= int(record.split("0")[2]) <= 1026  ))]   
+    bratsClients['CPTAC'] = data_into_list
+
+    my_file = open("brats_2021_site21_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 21
-    bratsClients['noname_7'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and (780  <= int(record.split("00")[2]) <= 782  or int(record.split("00")[2]) == 784  or 787  <= int(record.split("00")[2]) <= 789 or 791  <= int(record.split("00")[2]) <= 793 or 795  <= int(record.split("00")[2]) <= 797 or 799 <= int(record.split("00")[2]) <= 811 or int(record.split("00")[2]) == 814 or int(record.split("00")[2]) == 816  or 818 <= int(record.split("00")[2]) <= 820  or int(record.split("00")[2]) == 823 or int(record.split("00")[2]) == 824 or int(record.split("00")[2]) == 828 or int(record.split("00")[2]) == 830  ))]   
-    
+    bratsClients['noname_7'] = data_into_list
+
+    my_file = open("brats_2021_site22_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
+
     # site 22
-    bratsClients['noname_8'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 118 or int(record.split("00")[2]) == 126 or 1029 <= int(record.split("0")[2]) <= 1033 ))]   
+    bratsClients['noname_8'] = data_into_list
+
+    my_file = open("brats_2021_site23_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
 
     # site 23
-    bratsClients['noname_9'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( 1147 <= int(record.split("0")[2]) <= 1150 or int(record.split("0")[2]) == 1162 ))]   
+    bratsClients['noname_9'] = data_into_list
     
     
     return bratsClients
