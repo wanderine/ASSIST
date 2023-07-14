@@ -10,9 +10,13 @@ def get_data_list(dataset_folder):
     bratsClients['all_subjects'] = [record for record in os.listdir(dataset_folder) if
                          record.startswith("BraTS2021_")]
 
+    my_file = open("brats_2021_site1_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
+
     # site 1
-    bratsClients['noname_1'] = [record for record in os.listdir(dataset_folder) if
-                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 131 or int(record.split("00")[2]) == 152 or 154 <= int(record.split("00")[2]) <= 160 or int(record.split("00")[2]) == 162  or 165 <= int(record.split("00")[2]) <= 167  or 170 <= int(record.split("00")[2]) <= 172 or 176 <= int(record.split("00")[2]) <= 178 or 183 <= int(record.split("00")[2]) <= 188 or 191 <= int(record.split("00")[2]) <= 196 or int(record.split("00")[2]) == 199 or int(record.split("00")[2]) == 201  or int(record.split("00")[2]) == 203 or int(record.split("00")[2]) == 204 or int(record.split("00")[2]) == 206 or int(record.split("00")[2]) == 207 or  209 <= int(record.split("00")[2]) <= 212 or int(record.split("00")[2]) == 214 or  216 <= int(record.split("00")[2]) <= 222 or int(record.split("00")[2]) == 227 or int(record.split("00")[2]) == 228 or int(record.split("00")[2]) == 230 or int(record.split("00")[2]) == 231 or 233 <= int(record.split("00")[2]) <= 243 or  int(record.split("00")[2]) == 246 or int(record.split("00")[2]) == 247 or int(record.split("00")[2]) == 249 or int(record.split("00")[2]) == 250 or int(record.split("00")[2]) == 251 or int(record.split("00")[2]) == 253 or int(record.split("00")[2]) == 254 or  258 <= int(record.split("00")[2]) <= 263 or  int(record.split("00")[2]) == 266 or int(record.split("00")[2]) == 267 or 269 <= int(record.split("00")[2]) <= 271 or 273 <= int(record.split("00")[2]) <= 275 or 280 <= int(record.split("00")[2]) <= 286 or 288 <= int(record.split("00")[2]) <= 294 or 296 <= int(record.split("00")[2]) <= 301 or 303 <= int(record.split("00")[2]) <= 306 or 309 <= int(record.split("00")[2]) <= 314 or 316 <= int(record.split("00")[2]) <= 318 or 320 <= int(record.split("00")[2]) <= 322 or 324 <= int(record.split("00")[2]) <= 325 or 327 <= int(record.split("00")[2]) <= 329 or 331 <= int(record.split("00")[2]) <= 332 or  int(record.split("00")[2]) == 334 or int(record.split("00")[2]) == 336   or 338 <= int(record.split("00")[2]) <=  341  or 343 <= int(record.split("00")[2]) <=  344 or 346 <= int(record.split("00")[2]) <=  353  or  int(record.split("00")[2]) == 356 or int(record.split("00")[2]) == 359 or int(record.split("00")[2]) == 360 or int(record.split("00")[2]) == 364 or int(record.split("00")[2]) == 366 or int(record.split("00")[2]) == 367  or 369 <= int(record.split("00")[2]) <=  371  )) ]
+    bratsClients['noname_1'] = data_into_list
 
     # site 2
     bratsClients['noname_2'] = [record for record in os.listdir(dataset_folder) if
@@ -76,6 +80,14 @@ def get_data_list(dataset_folder):
     bratsClients['noname_5'] = [record for record in os.listdir(dataset_folder) if
                        (record.startswith("BraTS2021_") and 1417 <= int(record.split("0")[2]) <= 1425)]   
 
+    my_file = open("brats_2021_site18_subjects.txt", "r")
+    data = my_file.read()
+    data_into_list = data.split("\n")    
+    my_file.close()
+
+    # site 18
+    bratsClients['noname_6'] = data_into_list
+    
     # site 19
     bratsClients['ACRIN'] = [record for record in os.listdir(dataset_folder) if
                        (record.startswith("BraTS2021_") and 1163 <= int(record.split("0")[2]) <= 1166)]   
