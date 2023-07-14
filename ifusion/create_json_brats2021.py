@@ -214,6 +214,7 @@ def create_dataset_json_onesite(root_dir, output_file, site, validation_percent=
 
     brats_clients = get_data_list(root_dir)
     subject_list = brats_clients[site]
+    subject_list[:] = [x for x in subject_list if x] # Remove empty strings
     #print(subject_list)
     subject = 0
     for s in subject_list:
@@ -251,6 +252,7 @@ def create_dataset_json_separatevalidationsite(root_dir, output_file, training_s
     brats_clients = get_data_list(root_dir)
     
     subject_list = brats_clients[training_site]
+    subject_list[:] = [x for x in subject_list if x] # Remove empty strings
     subject = 0
     for s in subject_list:
         subject_list[subject] = root_dir + s
@@ -272,6 +274,7 @@ def create_dataset_json_separatevalidationsite(root_dir, output_file, training_s
 
 
     subject_list = brats_clients[validation_site]
+    subject_list[:] = [x for x in subject_list if x] # Remove empty strings
     subject = 0
     for s in subject_list:
         subject_list[subject] = root_dir + s
