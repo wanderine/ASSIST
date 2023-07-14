@@ -67,8 +67,31 @@ def get_data_list(dataset_folder):
     # site 16
     bratsClients['IvyGAP'] = [record for record in os.listdir(dataset_folder) if
                        (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 115 or 567 <= int(record.split("00")[2]) <= 572 or 574 <= int(record.split("00")[2]) <= 584 or 586 <= int(record.split("00")[2]) <= 591 or 593 <= int(record.split("00")[2]) <= 594 or 596 <= int(record.split("00")[2]) <= 599 ))]   
-    
 
+    # site 17
+    bratsClients['noname_5'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and 1417 <= int(record.split("0")[2]) <= 1425)]   
+
+    # site 19
+    bratsClients['ACRIN'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and 1163 <= int(record.split("0")[2]) <= 1166)]   
+    
+    # site 20
+    bratsClients['CPTAC'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 101 or int(record.split("00")[2]) == 127  or 442 <= int(record.split("00")[2]) <= 446  or 448 <= int(record.split("00")[2]) <= 449 or 451 <= int(record.split("00")[2]) <= 457 or  int(record.split("00")[2]) == 459  or 1011 <= int(record.split("0")[2]) <= 1026  ))]   
+
+    # site 21
+    bratsClients['noname_7'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and (780  <= int(record.split("00")[2]) <= 782  or int(record.split("00")[2]) == 784  or 787  <= int(record.split("00")[2]) <= 789 or 791  <= int(record.split("00")[2]) <= 793 or 795  <= int(record.split("00")[2]) <= 797 or 799 <= int(record.split("00")[2]) <= 811 or int(record.split("00")[2]) == 814 or int(record.split("00")[2]) == 816  or 818 <= int(record.split("00")[2]) <= 820  or int(record.split("00")[2]) == 823 or int(record.split("00")[2]) == 824 or int(record.split("00")[2]) == 828 or int(record.split("00")[2]) == 830  ))]   
+    
+    # site 22
+    bratsClients['noname_8'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 118 or int(record.split("00")[2]) == 126 or 1029 <= int(record.split("0")[2]) <= 1033 ))]   
+
+    # site 23
+    bratsClients['noname_9'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and ( 1147 <= int(record.split("0")[2]) <= 1150 or int(record.split("0")[2]) == 1162 ))]   
+    
     
     return bratsClients
 
