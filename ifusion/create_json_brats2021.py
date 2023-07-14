@@ -44,7 +44,30 @@ def get_data_list(dataset_folder):
     bratsClients['TCGA_GBM_6'] = [record for record in os.listdir(dataset_folder) if
                        (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 106 or int(record.split("00")[2]) == 111 or int(record.split("00")[2]) == 117 or int(record.split("00")[2]) == 124 or int(record.split("00")[2]) == 130 or int(record.split("00")[2]) == 138 or int(record.split("0")[2]) == 1472 or int(record.split("0")[2]) == 1473  ))]   
   
+    # site 11
+    bratsClients['TCGA_GBM_7'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 107 or int(record.split("00")[2]) == 108 or int(record.split("00")[2]) == 122 or int(record.split("00")[2]) == 148 or 1139 <= int(record.split("0")[2]) <= 1146 or int(record.split("0")[2]) == 1474 or int(record.split("0")[2]) == 1475  ))]   
 
+    # site 12
+    bratsClients['TCGA_LGG_1'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and 1476 <= int(record.split("0")[2]) <= 1486)]   
+
+    # site 13
+    bratsClients['TCGA_LGG_2'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and 1487 <= int(record.split("0")[2]) <= 1521)]   
+
+    # site 14
+    bratsClients['TCGA_LGG_3'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and 1522 <= int(record.split("0")[2]) <= 1527)]   
+
+    # site 15
+    bratsClients['TCGA_LGG_4'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and (1528 <= int(record.split("0")[2]) <= 1536 or  1663 <= int(record.split("0")[2]) <= 1666 ))]   
+
+    # site 16
+    bratsClients['IvyGAP'] = [record for record in os.listdir(dataset_folder) if
+                       (record.startswith("BraTS2021_") and ( int(record.split("00")[2]) == 115 or 567 <= int(record.split("00")[2]) <= 572 or 574 <= int(record.split("00")[2]) <= 584 or 586 <= int(record.split("00")[2]) <= 591 or 593 <= int(record.split("00")[2]) <= 594 or 596 <= int(record.split("00")[2]) <= 599 ))]   
+    
 
     
     return bratsClients
