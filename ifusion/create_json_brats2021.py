@@ -15,7 +15,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 1
+    # site 1, 511 subjects
     bratsClients['noname_1'] = data_into_list
 
     my_file = open("brats_2021_site2_subjects.txt", "r")
@@ -23,7 +23,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 2
+    # site 2, 6 subjects
     bratsClients['noname_2'] = data_into_list
 
     my_file = open("brats_2021_site3_subjects.txt", "r")
@@ -31,7 +31,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
     
-    # site 3
+    # site 3, 15 subjects
     bratsClients['noname_3'] = data_into_list
         
     my_file = open("brats_2021_site4_subjects.txt", "r")
@@ -39,7 +39,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 4
+    # site 4, 47 subjects
     bratsClients['noname_4'] = data_into_list
 
     my_file = open("brats_2021_site5_subjects.txt", "r")
@@ -47,7 +47,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
     
-    # site 5
+    # site 5, 22 subjects
     bratsClients['TCGA_GBM_1'] = data_into_list
 
     my_file = open("brats_2021_site6_subjects.txt", "r")
@@ -55,7 +55,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 6
+    # site 6, 34 subjects
     bratsClients['TCGA_GBM_2'] = data_into_list
 
     my_file = open("brats_2021_site7_subjects.txt", "r")
@@ -63,7 +63,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 7
+    # site 7, 12 subjects
     bratsClients['TCGA_GBM_3'] = data_into_list
 
     my_file = open("brats_2021_site8_subjects.txt", "r")
@@ -71,7 +71,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 8
+    # site 8, 8 subjects
     bratsClients['TCGA_GBM_4'] = data_into_list
 
     my_file = open("brats_2021_site9_subjects.txt", "r")
@@ -79,7 +79,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 9
+    # site 9, 4 subjects
     bratsClients['TCGA_GBM_5'] = data_into_list
 
     my_file = open("brats_2021_site10_subjects.txt", "r")
@@ -87,7 +87,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 10
+    # site 10, 8 subjects
     bratsClients['TCGA_GBM_6'] = data_into_list
 
     my_file = open("brats_2021_site11_subjects.txt", "r")
@@ -95,7 +95,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 11
+    # site 11, 14 subjects
     bratsClients['TCGA_GBM_7'] = data_into_list
 
     my_file = open("brats_2021_site12_subjects.txt", "r")
@@ -103,7 +103,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 12
+    # site 12, 11 subjects
     bratsClients['TCGA_LGG_1'] = data_into_list
 
     my_file = open("brats_2021_site13_subjects.txt", "r")
@@ -111,7 +111,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 13
+    # site 13, 35 subjects
     bratsClients['TCGA_LGG_2'] = data_into_list
 
     my_file = open("brats_2021_site14_subjects.txt", "r")
@@ -119,7 +119,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 14
+    # site 14, 6 subjects
     bratsClients['TCGA_LGG_3'] = data_into_list
 
     my_file = open("brats_2021_site15_subjects.txt", "r")
@@ -127,7 +127,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 15
+    # site 15, 13 subjects
     bratsClients['TCGA_LGG_4'] = data_into_list
 
     my_file = open("brats_2021_site16_subjects.txt", "r")
@@ -135,7 +135,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 16
+    # site 16, 34 subjects
     bratsClients['IvyGAP'] = data_into_list
 
     my_file = open("brats_2021_site17_subjects.txt", "r")
@@ -143,7 +143,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 17
+    # site 17, 9 subjects
     bratsClients['noname_5'] = data_into_list
     
     my_file = open("brats_2021_site18_subjects.txt", "r")
@@ -151,7 +151,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 18
+    # site 18, 382 subjects
     bratsClients['noname_6'] = data_into_list
 
     my_file = open("brats_2021_site19_subjects.txt", "r")
@@ -159,7 +159,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 19
+    # site 19, 4 subjects
     bratsClients['ACRIN'] = data_into_list
 
     my_file = open("brats_2021_site20_subjects.txt", "r")
@@ -167,7 +167,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 20
+    # site 20, 33 subjects
     bratsClients['CPTAC'] = data_into_list
 
     my_file = open("brats_2021_site21_subjects.txt", "r")
@@ -175,7 +175,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 21
+    # site 21, 35 subjects
     bratsClients['noname_7'] = data_into_list
 
     my_file = open("brats_2021_site22_subjects.txt", "r")
@@ -183,7 +183,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 22
+    # site 22, 7 subjects
     bratsClients['noname_8'] = data_into_list
 
     my_file = open("brats_2021_site23_subjects.txt", "r")
@@ -191,7 +191,7 @@ def get_data_list(dataset_folder):
     data_into_list = data.split("\n")    
     my_file.close()
 
-    # site 23
+    # site 23, 5 subjects
     bratsClients['noname_9'] = data_into_list
     
     
